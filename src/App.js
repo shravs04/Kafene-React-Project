@@ -1,24 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { Header } from './Components/Header/header';
+import { BrowserRouter, Route} from 'react-router-dom';
+import { Orderspage } from './Containers/LoginPage/OrdersPage/OrdersPage';
+import { Productspage } from './Containers/LoginPage/ProductsPage/ProductsPage';
+import { Userspage } from './Containers/LoginPage/UsersPage/UsersPage';
+import { Orderdetailspage } from './Containers/LoginPage/OrderDetailsPage/OrderDetailsPage';
+import { Productdetailspage } from './Containers/LoginPage/ProductDetailsPage/ProductDetailsPage';
+import Loginpage from './Containers/LoginPage/loginPage';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+          <Header/>
+          {/* <Loginpage/> */}
+          <Route exact path='/' component={Loginpage} />
+          <Route exact path='/orderspage' component={Orderspage} />
+          <Route exact path='/productspage' component={Productspage} />
+          <Route exact path='/userspage' component={Userspage} />
+          <Route exact path='/orderdetailspage' component={Orderdetailspage} />
+          <Route exact path='/productdetailspage' component={Productdetailspage} />
+          
+      </div>
+    </BrowserRouter>
   );
 }
 

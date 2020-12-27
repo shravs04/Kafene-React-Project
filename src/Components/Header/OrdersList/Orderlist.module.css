@@ -1,0 +1,20 @@
+.Row p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.Row{
+    margin-top: 0px;
+    margin-bottom: 25px;
+}
+
+.None{
+    display: none;
+}
+/* tr{
+    margin-bottom: 5px;
+} */
+
+.GreyText{
+    color: #8C8CAA;
+}
