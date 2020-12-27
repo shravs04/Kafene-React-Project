@@ -3,6 +3,7 @@ import classes from './ProductsPage.module.css';
 import Axios from 'axios';
 import ProductsList from '../../../Components/Header/ProductsList/ProductsList';
 import { Link } from 'react-router-dom';
+import LogoImage from '../../../Assets/logo.png';
 
 
 export function Productspage(props) {
@@ -26,6 +27,22 @@ export function Productspage(props) {
     return (
 
         <main className={classes.MainContainer}>
+            <header>
+                <div className={classes.TopbarLeftMenu}>
+                   <div className={classes.TopbarLogo}>
+                       <img src={LogoImage} alt="Logo" />
+                       <p className={classes.TopbarBrand}>Kafene</p>
+                   </div>
+
+                   <nav>
+                    <Link to='/orderspage'><a className={classes.MenuItems}>Orders</a></Link>   
+                    <Link to='/productspage'><a className={`${[classes.MenuItems, classes.Active].join(' ')}`}>Products</a></Link>   
+                    <Link to='/userspage'><a className={classes.MenuItems}>Users</a></Link>
+                   </nav>
+                </div>
+
+                <Link to="/"><a className={classes.TopbarRightMenu}>Logout</a></Link>
+            </header>
              <Link to="/productdetailspage"><h3 className={classes.Linking}>To Productdetails Page</h3></Link>   
           <div className={classes.HomepageWrapper}>
             <h1 className={classes.HomepageMainheading}>

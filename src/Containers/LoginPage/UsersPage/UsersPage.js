@@ -2,6 +2,9 @@ import React from 'react';
 import UsersList from '../../../Components/Header/UsersList/UsersList';
 import './UsersPage.css';
 import Axios from 'axios';
+import { Header } from '../../../Components/Header/header';
+import LogoImage from '../../../Assets/logo.png';
+import { Link } from 'react-router-dom';
 
 export function Userspage(props) {  
 
@@ -21,6 +24,22 @@ export function Userspage(props) {
 
     return (
         <main class="main-container">
+           <header>
+                <div class="topbar-left">
+                   <div class="topbar-logo">
+                       <img src={LogoImage} alt="Logo" />
+                       <p class="topbar-brand">Kafene</p>
+                   </div>
+
+                   <nav>
+                    <Link to='/orderspage'><a class="menu-items">Orders</a></Link>   
+                    <Link to='/productspage'><a class="menu-items">Products</a></Link>   
+                    <Link to='/userspage'><a class="menu-items active">Users</a></Link>
+                   </nav>
+                </div>
+
+                <Link to="/"><a class="topbar-right">Logout</a></Link>
+            </header>
         <div class="user-list-pageWrapper">
             <h1 class="user-list-mainHeading">Users</h1>
             <div class="user-list-order-wrapper">

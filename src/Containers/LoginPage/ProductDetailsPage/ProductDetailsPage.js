@@ -4,6 +4,7 @@ import Axios from 'axios';
 import OrdersList from '../../../Components/Header/OrdersList/OrdersList';
 
 
+
 export function Productdetailspage(props) {
 
     const [dataFetch, setdataFetch] = React.useState({});
@@ -22,6 +23,7 @@ export function Productdetailspage(props) {
 
     return (
         <div className={classes.Wrapper}>
+           
             <h1 className={classes.Heading}>Product Details</h1>
             
             <div className={classes.ContentWrapper}>
