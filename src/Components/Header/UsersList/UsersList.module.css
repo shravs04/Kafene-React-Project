@@ -1,3 +1,11 @@
 .GreyText{
     color: #8C93A2;
 }
+
+.Row td{
+    vertical-align: left;
+}
+/* 
+.Row{
+    text-align: center;
+} */

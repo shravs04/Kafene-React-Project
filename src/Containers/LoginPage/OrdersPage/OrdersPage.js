@@ -12,6 +12,8 @@ export function Orderspage(props) {
     const [packed, setpacked] = React.useState(true);
     const [transit, settransit] = React.useState(true);
     const [deliver, setdeliver] = React.useState(true);
+    const [count, setcount] = React.useState(100);
+
 
     React.useEffect(() => {
         Axios.get('https://5fc1a1c9cb4d020016fe6b07.mockapi.io/api/v1/orders')
@@ -22,12 +24,12 @@ export function Orderspage(props) {
         .catch((error) => {
             console.log(error);
         })
-    }, [dataFetch])
+    }, [])
     
 
-    // const handleClick = () => {
-    //     setcheck(!false);
-    // } 
+    const handleClick = () => {
+        newItem === true ? setnewItem(false): setnewItem(true);
+    } 
 
     return (
         <main className={classes.MainContainer}>
@@ -40,15 +42,23 @@ export function Orderspage(props) {
             <div className={classes.HomepageFilterWrapper}>
                 <h3>Filters</h3>
                 <div className={classes.HomepageFilterOptions}>
-                    <p className={classes.Count}>Count: 100</p>
-                    <label onClick={() => {newItem === true ? setnewItem(false): setnewItem(true)}} className={classes.HomepageFilterCheckbox}>
-                    <input className={classes.Newone} type="checkbox" name="orders-new" checked={true}/>New</label>
-                    <label onClick={() => {setpacked(packed ? true:false)}} className={classes.HomepageFilterCheckbox}>
-                    <input className={classes.Packedone} type="checkbox" name="orders-packed" value={packed}/>Packed</label>
-                    <label onClick={() => {settransit(transit ? true:false)}} className={classes.HomepageFilterCheckbox}>
-                    <input className={classes.Transitone} type="checkbox" name="orders-transit" value={transit}/>InTransit</label>
-                    <label onClick={() => {setdeliver(deliver ? true:false)}} className={classes.HomepageFilterCheckbox}>
-                    <input className={classes.Deliveredone}  type="checkbox" name="orders-delivered" value={deliver}/>Delivered</label>
+                    <p className={classes.Count}>Count: {count}</p>
+
+                    <div className={classes.Newdiv} onClick={() => {handleClick()}}>
+                    {/* <label className={classes.HomepageFilterCheckbox}> */}
+                    <input className={classes.Newone} type="checkbox" name="orders-new" checked={newItem}/>New</div>
+                    
+                    <div className={classes.Newdiv} onClick={() => {packed === true ? setpacked(false): setpacked(true)}}>
+                    {/* <label className={classes.HomepageFilterCheckbox}> */}
+                    <input className={classes.Packedone} type="checkbox" name="orders-packed" checked={packed}/>Packed</div>
+                    
+                    <div className={classes.Newdiv} onClick={() => {transit === true ? settransit(false): settransit(true)}}>
+                    {/* <label className={classes.HomepageFilterCheckbox}> */}
+                    <input className={classes.Transitone} type="checkbox" name="orders-transit" checked={transit}/>InTransit</div>
+                    
+                    <div className={classes.Newdiv} onClick={() => {deliver === true ? setdeliver(false): setdeliver(true)}}>
+                    {/* <label className={classes.HomepageFilterCheckbox}> */}
+                    <input className={classes.Deliveredone}  type="checkbox" name="orders-delivered" checked={deliver}/>Delivered</div>
                 </div>
             </div>
             
@@ -60,9 +70,35 @@ export function Orderspage(props) {
         
                         {
                             dataFetch.map((item) => {
-                                return <OrdersList key={item.id} id={item.id} 
-                                name={item.customerName} date={item.orderDate} time={item.orderTime} amount={item.amount}
-                                status={item.orderStatus}/>
+                                // console.log("yes")
+                                if(item.orderStatus == "New"){
+                                   
+                                    if (newItem){                                      
+                                        return <OrdersList key={item.id} id={item.id} 
+                                        name={item.customerName} date={item.orderDate} time={item.orderTime} amount={item.amount}
+                                        status={item.orderStatus} />
+                                    }
+                                    }else if(item.orderStatus == "Packed"){
+                                        if (packed){                                      
+                                            return <OrdersList key={item.id} id={item.id} 
+                                            name={item.customerName} date={item.orderDate} time={item.orderTime} amount={item.amount}
+                                            status={item.orderStatus} />
+                                        }
+                                    }else if(item.orderStatus == "InTransit"){
+                                        if (transit){                                      
+                                            return <OrdersList key={item.id} id={item.id} 
+                                            name={item.customerName} date={item.orderDate} time={item.orderTime} amount={item.amount}
+                                            status={item.orderStatus} />
+                                        }
+                                    }else if(item.orderStatus == "Delivered"){
+                                        if (deliver){                                      
+                                            return <OrdersList key={item.id} id={item.id} 
+                                            name={item.customerName} date={item.orderDate} time={item.orderTime} amount={item.amount}
+                                            status={item.orderStatus} />
+                                        }
+                                    }
+                                
+                                
                             })
                         }
                         {/* <tr className={classes.Row}>

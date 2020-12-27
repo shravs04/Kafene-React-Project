@@ -1,3 +1,7 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 .MainContainer{
     margin-top: 100px;
 }
@@ -17,6 +21,15 @@
     display: flex;
     align-items: flex-start;
     /* padding: 5px 0; */
+}
+
+input{
+    margin-right: 13px;
+}
+
+.Newdiv{
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .HomepageFilterWrapper{

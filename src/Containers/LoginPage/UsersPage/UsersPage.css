@@ -1,3 +1,7 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 .main-container{
     margin-top: 120px;
 }
@@ -53,12 +57,14 @@
     border-collapse: collapse;
 }
 
-/* .row > th{
-    width: 10px;
-} */
+.user-list th{
+    vertical-align: center
+    ;
+}
 
-/* #userList > tr{
-    margin-bottom: 10px;
+
+/* .user-list tr {
+    text-align: center;
 } */
 
 tr>td{
@@ -72,4 +78,19 @@ tr>td{
 .table > tr{
     position: relative;
     right: 150px;
+} */
+/* .HomepageOrderTable td{
+    text-align: left;
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+.HomepageOrderTable th{
+    text-align: left;
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+table > tr {
+    vertical-align: middle;
 } */

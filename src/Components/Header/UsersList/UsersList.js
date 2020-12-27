@@ -12,7 +12,7 @@ function UsersList(props) {
                 <td><img src={props.imagePic}/></td>
                 <td className={classes.GreyText}>{props.name}</td>
                 <td>{props.date}</td>
-            <td className={classes.GreyText}>${props.gender}</td>
+            <td className={classes.GreyText}>{props.gender}</td>
             <td className={classes.GreyText}>{props.city}, <span>{props.country}</span></td>
             
         </tr>

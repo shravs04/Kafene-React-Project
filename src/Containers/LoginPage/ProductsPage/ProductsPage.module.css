@@ -1,3 +1,7 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 .MainContainer{
     margin-top: 100px;
 }
@@ -61,6 +65,15 @@ h3{
     text-align: left;
     padding: 12px 24px;
     font-size: 14px;
+}
+
+input{
+    margin-right: 13px;
+}
+
+.Newdiv{
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 table > tr {

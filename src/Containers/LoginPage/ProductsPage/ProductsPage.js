@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 export function Productspage(props) {
 
     const [dataFetch, setdataFetch] = React.useState([]);
+    const [expire, setexpire] = React.useState(true);
+    const [stock, setstock] = React.useState(true);
 
     React.useEffect(() => {
         Axios.get('https://5fc1a1c9cb4d020016fe6b07.mockapi.io/api/v1/products')
@@ -34,10 +36,14 @@ export function Productspage(props) {
                 <h3>Filters</h3>
                 <div className={classes.HomepageFilterOptions}>
                     <p className={classes.Count}>Count: 100</p>
-                    <label className={classes.HomepageFilterCheckbox}>
-                    <input className={classes.Newone} type="checkbox" name="orders-new"/>Expired</label>
-                    <label className={classes.HomepageFilterCheckbox}>
-                    <input className={classes.Packedone} type="checkbox" name="orders-packed"/>Low Stock</label>
+
+                    <div className={classes.Newdiv} onClick={() => {expire === true ? setexpire(false): setexpire(true)}}>
+                    {/* <label className={classes.HomepageFilterCheckbox}> */}
+                    <input className={classes.Packedone} type="checkbox" name="orders-packed" checked={expire}/>Expired</div>
+                    
+                    <div className={classes.Newdiv} onClick={() => {stock === true ? setstock(false): setstock(true)}}>
+                    {/* <label className={classes.HomepageFilterCheckbox}> */}
+                    <input className={classes.Packedone} type="checkbox" name="orders-packed" checked={stock}/>Low Stock</div>
                     {/* <label className={classes.HomepageFilterCheckbox}>
                     <input className={classes.Transitone} type="checkbox" name="orders-transit"/>InTransit</label>
                     <label className={classes.HomepageFilterCheckbox}>
@@ -53,9 +59,23 @@ export function Productspage(props) {
         
                         {
                             dataFetch.map((item) => {
-                                return <ProductsList key={item.id} id={item.id} 
-                                name={item.medicineName} brand={item.medicineBrand} date={item.expiryDate} amount={item.unitPrice}
-                                stock={item.stock}/>
+                                let givenDate = item.expiryDate;
+                                const currentDate = new Date();
+                                givenDate = new Date(givenDate);
+                                if(givenDate < currentDate){
+                                    if(expire){
+                                        return <ProductsList key={item.id} id={item.id} 
+                                        name={item.medicineName} brand={item.medicineBrand} date={item.expiryDate} amount={item.unitPrice}
+                                        stock={item.stock}/>
+                                    }
+                                }else if(item.stock < 100){
+                                    if(stock){
+                                        return <ProductsList key={item.id} id={item.id} 
+                                        name={item.medicineName} brand={item.medicineBrand} date={item.expiryDate} amount={item.unitPrice}
+                                        stock={item.stock}/>
+                                    }
+                                }
+                               
                             })
                         }
                         
